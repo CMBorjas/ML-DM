@@ -1,7 +1,7 @@
-from flask import request, redirect
+from flask import Blueprint, render_template
 
-@app.route('/upload', methods=['POST'])
-def upload_map():
-    map_file = request.files['map']
-    map_file.save(f"app/maps/{map_file.filename}")
-    return redirect('/')
+bp = Blueprint('main', __name__)
+
+@bp.route('/')
+def index():
+    return render_template('index.html')
