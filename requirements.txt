@@ -1,14 +1,11 @@
-Flask==2.3.3
-LangChain==0.0.295
-SQLAlchemy==2.0.21
-Flask-SQLAlchemy==3.0.3
-Flask-WTF==1.1.1
-WTForms==3.0.1
-openai==0.27.8
-langflow==0.2.2
-Jinja2==3.1.2
-requests==2.31.0
-python-dotenv==1.0.0
-gunicorn==21.2.0  # For deployment
-pytest==7.4.2     # For testing
-pytest-flask==1.2.0
+Flask
+SQLAlchemy
+LangChain
+langflow
+openai
+gunicorn  # For production deployment
+flask-wtf  # For forms and validation
+flask-bootstrap  # For styling
+numpy
+pandas
+pytest

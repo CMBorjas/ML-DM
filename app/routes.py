@@ -1,9 +1,7 @@
-from flask import Blueprint, render_template
+from flask import request, redirect
 
-# Define a blueprint for the main routes
-main = Blueprint('main', __name__)
-
-@main.route('/')
-def index():
-    """Home page route."""
-    return render_template('index.html', title="Dungeon Master Assistant")
+@app.route('/upload', methods=['POST'])
+def upload_map():
+    map_file = request.files['map']
+    map_file.save(f"app/maps/{map_file.filename}")
+    return redirect('/')
