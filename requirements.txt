@@ -9,34 +9,4 @@ flask-bootstrap  # For styling
 numpy
 pandas
 pytest
-ipykernelHere’s a step-by-step guide to test your ML-DM project locally using VS Code with a Conda environment:
-1. Set Up the Conda Environment
-
-    Create the environment:
-
-conda create --name ml-dm python=3.11 -y
-conda activate ml-dm
-
-Install dependencies:
-
-    Add dependencies to requirements.txt:
-
-Flask
-SQLAlchemy
-LangChain
-langflow
-openai
-gunicorn
-flask-wtf
-flask-bootstrap
-numpy
-pandas
-pytest
-
-Install them in the environment:
-
-    pip install -r requirements.txt
-
-Install additional tools for development:
-
-pip install ipykernel
+ipykernel

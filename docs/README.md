@@ -77,3 +77,31 @@ ML-DM/
 ├── .gitignore                        # Ignore unnecessary files for Git
 └── config.yaml                       # Configuration file for the application
 ```
+
+## Creating you environement
+Here’s a step-by-step guide to test your ML-DM project locally using VS Code with a Conda environment:
+1. Set Up the Conda Environment
+    Create the environment:
+```
+    conda create --name ml-dm python=3.11 -y
+    conda activate ml-dm
+```
+2. Install dependencies:
+```
+    Flask
+    SQLAlchemy
+    LangChain
+    langflow
+    openai
+    gunicorn
+    flask-wtf
+    flask-bootstrap
+    numpy
+    pandas
+    pytest
+    ipkernel
+```
+3. Install them in the environment:
+```
+    pip install -r requirements.txt
+```
