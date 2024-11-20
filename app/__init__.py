@@ -3,10 +3,8 @@ from flask import Flask
 def create_app():
     app = Flask(__name__)
 
-    # Register blueprints
-    from .routes import bp as routes_bp
-    app.register_blueprint(routes_bp)
+    # Register the Blueprint
+    from .routes import bp
+    app.register_blueprint(bp)
 
     return app
-
-app = create_app()

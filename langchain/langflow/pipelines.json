@@ -1,0 +1,80 @@
+{
+    "pipelines": [
+        {
+            "name": "NPC Dialogue Generation",
+            "description": "Generates dialogue for NPCs based on campaign history and player interactions.",
+            "inputs": ["npc_name", "current_situation"],
+            "outputs": ["dialogue"],
+            "steps": [
+            {
+            "step_name": "Retrieve Campaign History",
+            "type": "retriever",
+            "config": {
+                    "retriever_type": "database",
+                    "source": "campaign_logs",
+                    "query_template": "Retrieve details about {{npc_name}} in the context of {{current_situation}}."
+                }
+            },
+            {
+                "step_name": "Generate NPC Dialogue",
+                "type": "llm",
+                "config": {
+                "model": "gpt-4",
+                "prompt_template": "Given the context '{{retrieved_history}}', generate dialogue for {{npc_name}}."
+                }
+            }
+        ]
+        },
+        {
+            "name": "Encounter Suggestions",
+            "description": "Suggests an encounter tailored to the current campaign state.",
+            "inputs": ["current_location", "player_levels"],
+            "outputs": ["encounter_details"],
+            "steps": [
+                {
+                "step_name": "Retrieve Related Encounters",
+                "type": "retriever",
+                "config": 
+                    {
+                        "retriever_type": "database",
+                        "source": "campaign_logs",
+                        "query_template": "Fetch prior encounters near {{current_location}} for players at {{player_levels}}."
+                    }
+                },
+                {
+                "step_name": "Generate Encounter",
+                "type": "llm",
+                "config": {
+                    "model": "gpt-4",
+                    "prompt_template": "Given the retrieved data '{{retrieved_encounters}}', suggest a new encounter."
+                }
+                }
+            ]
+        },
+        {
+            "name": "Loot Generation",
+            "description": "Generates loot for players after encounters.",
+            "inputs": ["encounter_type", "player_inventory"],
+            "outputs": ["loot"],
+            "steps": [
+            {
+                "step_name": "Retrieve Related Loot",
+                "type": "retriever",
+                "config": {
+                "retriever_type": "database",
+                "source": "campaign_logs",
+                "query_template": "Fetch loot related to {{encounter_type}}."
+                }
+            },
+            {
+                "step_name": "Generate Loot",
+                "type": "llm",
+                "config": {
+                "model": "gpt-4",
+                "prompt_template": "Based on {{player_inventory}} and {{retrieved_loot}}, generate appropriate loot."
+                }
+            }
+            ]
+        }
+    ]
+}

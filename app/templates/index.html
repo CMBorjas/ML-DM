@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ML-DM Assistant</title>
+    <title>Dungeon Master Map</title>
+    <link rel="stylesheet" href="/static/css/map.css">
 </head>
 <body>
-    <h1>Welcome to the Dungeon Master Assistant!</h1>
+    <h1>Dungeon Master Map</h1>
+    <hr>
+
+    <!-- Form to upload maps -->
+    <form id="uploadForm" action="/upload-map" method="POST" enctype="multipart/form-data">
+        <label for="mapUpload">Upload Map:</label>
+        <input type="file" id="mapUpload" name="map">
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- Form to upload tokens -->
+    <form id="tokenForm" action="/upload-token" method="POST" enctype="multipart/form-data">
+        <label for="tokenUpload">Upload Token:</label>
+        <input type="file" id="tokenUpload" name="token">
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="map"></div>
+    <script src="/static/js/map.js"></script>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div id="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
 </body>
 </html>

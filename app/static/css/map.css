@@ -1,0 +1,130 @@
+#map {
+    border: 2px solid black;
+    margin: 20px auto;
+    position: relative;
+}
+
+.token {
+    width: 40px;
+    height: 40px;
+    background-color: red; /* Default token color */
+    border-radius: 50%;
+    position: absolute;
+    cursor: grab;
+    z-index: 10;
+}
+
+.token:active {
+    cursor: grabbing;
+}
+
+/* Body and overall layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    margin-top: 20px;
+}
+
+hr {
+    margin: 20px auto;
+    width: 80%;
+    border: 1px solid #333;
+}
+
+/* Map container styling */
+#map {
+    margin: 20px auto;
+    width: 800px;
+    height: 600px;
+    border: 2px solid black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #eaeaea;
+    position: relative; /* Needed for absolute positioning of tokens */
+}
+
+/* Token styling */
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    cursor: grab;
+}
+
+img:active {
+    cursor: grabbing;
+}
+
+/* Flash message styling */
+#messages {
+    margin: 20px auto;
+    padding: 10px;
+    width: 50%;
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb; /* Red border */
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Form styling */
+form {
+    margin: 20px auto;
+    padding: 10px;
+    display: inline-block;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+form input[type="file"] {
+    margin-right: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.message.success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.message.error {
+    background-color: #dc3545;
+    color: #fff;
+}
