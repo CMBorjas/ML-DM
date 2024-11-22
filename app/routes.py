@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
 import os
+from flask import Blueprint, render_template, request, redirect, url_for, flash, Response
 from werkzeug.utils import secure_filename
 import gradio as gr
-from gradio_interface import create_gradio_interface
+import requests
 
 # Create the Blueprint
 bp = Blueprint('main', __name__)
@@ -53,3 +53,19 @@ def upload_token():
         file.save(os.path.join(UPLOAD_FOLDER_TOKENS, filename))
         flash(f"Token {filename} uploaded successfully!")
         return redirect(url_for('main.index'))
+
+
+@bp.route("/gradio/<path:path>", methods=["GET", "POST"])
+def gradio(path):
+    # Proxy request to Gradio (running on port 7860)
+    gradio_url = f"http://localhost:7860/{path}" # Use the gradio Service name
+    response = requests.request(
+        method=request.method,
+        url=gradio_url,
+        headers={key: value for (key, value) in request.headers if key != 'Host'},
+        data=request.get_data(),
+        cookies=request.cookies,
+        allow_redirects=False
+        )
+    
+    return Response(response.content, response.status_code, response.headers.items())

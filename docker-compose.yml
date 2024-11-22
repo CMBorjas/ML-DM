@@ -1,9 +1,17 @@
-version: "3.8"
+version: "3.9"
 services:
-  app:
-    build: .
+  flask_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    volumes:
-      - ./data:/app/data
-      - ./app/maps:/app/maps
+    depends_on:
+      - gradio_app
+
+  gradio_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.gradio
+    ports:
+      - "7860:7860"
