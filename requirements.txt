@@ -10,4 +10,6 @@ numpy
 pandas
 pytest
 ipykernel
-gradio
+gradio>=3.39.0
+langchain-community
+langchain-openai

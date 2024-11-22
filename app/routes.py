@@ -4,6 +4,8 @@ from werkzeug.utils import secure_filename
 import gradio as gr
 import requests
 
+# Updated on 11.22.2024
+
 # Create the Blueprint
 bp = Blueprint('main', __name__)
 
@@ -56,16 +58,17 @@ def upload_token():
 
 
 @bp.route("/gradio/<path:path>", methods=["GET", "POST"])
-def gradio(path):
-    # Proxy request to Gradio (running on port 7860)
-    gradio_url = f"http://localhost:7860/{path}" # Use the gradio Service name
+def proxy_to_gradio(path):
+    gradio_url = f"http://127.0.0.1:7860/{path}"
     response = requests.request(
         method=request.method,
         url=gradio_url,
-        headers={key: value for (key, value) in request.headers if key != 'Host'},
+        headers={key: value for key, value in request.headers if key != "Host"},
         data=request.get_data(),
         cookies=request.cookies,
-        allow_redirects=False
-        )
-    
+        allow_redirects=False,
+    )
     return Response(response.content, response.status_code, response.headers.items())
+
+
+
