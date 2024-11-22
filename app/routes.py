@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 import gradio as gr
 import requests
 
-# Updated on 11.22.2024
+# Updated on 11.22.2024 V001
 
 # Create the Blueprint
 bp = Blueprint('main', __name__)
