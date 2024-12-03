@@ -43,7 +43,8 @@ ML-DM/
 │   │   ├── js/                       # JavaScript files
 │   │   └── images/                   # Images, icons, etc.
 │   ├── maps/                         # Folder for custom maps uploaded by DMs
-│   └── uploads/                      # Temporary folder for file uploads
+│   ├── uploads/                      # Temporary folder for file uploads
+|   ├── models.py                     # Data base for models
 │
 ├── data/                             # Data-related folders
 │   ├── database.db                   # SQLite database (or equivalent) for campaign storage

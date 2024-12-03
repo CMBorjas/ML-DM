@@ -1,10 +1,11 @@
 from flask import Flask
+from app.routes import main
 
 def create_app():
     app = Flask(__name__)
+    app.secret_key = "supersecretkey"
 
-    # Register the Blueprint
-    from .routes import bp
-    app.register_blueprint(bp)
+    # Register the blueprint
+    app.register_blueprint(main)
 
     return app

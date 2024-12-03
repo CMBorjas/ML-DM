@@ -128,3 +128,8 @@ button:hover {
     background-color: #dc3545;
     color: #fff;
 }
+
+iframe {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}

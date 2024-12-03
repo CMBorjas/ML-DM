@@ -1,74 +1,82 @@
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 import os
-from flask import Blueprint, render_template, request, redirect, url_for, flash, Response
 from werkzeug.utils import secure_filename
-import gradio as gr
-import requests
 
-# Updated on 11.22.2024 V001
+UPLOAD_FOLDER = os.path.join("app", "uploads")
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
-# Create the Blueprint
-bp = Blueprint('main', __name__)
+# Define the Blueprint
+main = Blueprint("main", __name__, template_folder="templates", static_folder="static")
 
-# Folder paths for uploads
-UPLOAD_FOLDER_MAPS = "app/maps/"
-UPLOAD_FOLDER_TOKENS = "app/static/images/tokens/"
+# Ensure upload directory exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Ensure folders exist
-os.makedirs(UPLOAD_FOLDER_MAPS, exist_ok=True)
-os.makedirs(UPLOAD_FOLDER_TOKENS, exist_ok=True)
+def allowed_file(filename):
+    """
+    Helper function to check if the uploaded file is allowed.
+    """
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Route for the index page
-@bp.route('/')
+@main.route("/")
 def index():
-    return render_template('index.html')
+    """
+    Serve the main Dungeon Master Map page.
+    """
+    return render_template("index.html")
 
-# Route to handle map uploads
-@bp.route('/upload-map', methods=['POST'])
+@main.route("/upload_map", methods=["POST"])
 def upload_map():
-    if 'map' not in request.files:
-        return {"success": False, "message": "No file part"}, 400
+    """
+    Handle map uploads.
+    """
+    if "map" not in request.files:
+        flash("No map file part")
+        return redirect(url_for("main.index"))
 
-    file = request.files['map']
-    if file.filename == '':
-        return {"success": False, "message": "No file selected"}, 400
-
-    if file:
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(UPLOAD_FOLDER_MAPS, filename)
-        file.save(filepath)
-        return {"success": True, "filename": filename, "message": f"Map {filename} uploaded successfully!"}, 200
-
-# Route to handle token uploads
-@bp.route('/upload-token', methods=['POST'])
-def upload_token():
-    if 'token' not in request.files:
-        flash("No file part")
-        return redirect(request.url)
-
-    file = request.files['token']
-    if file.filename == '':
+    file = request.files["map"]
+    if file.filename == "":
         flash("No selected file")
-        return redirect(request.url)
+        return redirect(url_for("main.index"))
 
-    if file:
+    if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        file.save(os.path.join(UPLOAD_FOLDER_TOKENS, filename))
-        flash(f"Token {filename} uploaded successfully!")
-        return redirect(url_for('main.index'))
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        file.save(filepath)
+        flash(f"Map uploaded successfully: {filename}")
+        return redirect(url_for("main.index"))
+    else:
+        flash("Invalid file type. Only images are allowed.")
+        return redirect(url_for("main.index"))
 
+@main.route("/upload_token", methods=["POST"])
+def upload_token():
+    """
+    Handle token uploads.
+    """
+    if "token" not in request.files:
+        flash("No token file part")
+        return redirect(url_for("main.index"))
 
-@bp.route("/gradio/<path:path>", methods=["GET", "POST"])
+    file = request.files["token"]
+    if file.filename == "":
+        flash("No selected file")
+        return redirect(url_for("main.index"))
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        file.save(filepath)
+        flash(f"Token uploaded successfully: {filename}")
+        return redirect(url_for("main.index"))
+    else:
+        flash("Invalid file type. Only images are allowed.")
+        return redirect(url_for("main.index"))
+
+@main.route("/proxy_to_gradio/", defaults={"path": ""})
+@main.route("/proxy_to_gradio/<path:path>")
 def proxy_to_gradio(path):
-    gradio_url = f"http://127.0.0.1:7860/{path}"
-    response = requests.request(
-        method=request.method,
-        url=gradio_url,
-        headers={key: value for key, value in request.headers if key != "Host"},
-        data=request.get_data(),
-        cookies=request.cookies,
-        allow_redirects=False,
-    )
-    return Response(response.content, response.status_code, response.headers.items())
-
-
+    """
+    Proxy to the Gradio interface.
+    """
+    return redirect(f"http://127.0.0.1:7860/{path}")
 
