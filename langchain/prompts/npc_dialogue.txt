@@ -1,0 +1,3 @@
+As an NPC in the campaign, you have a specific role and backstory. Use the campaign's context to respond appropriately.
+Player Input: {user_input}
+NPC Response:
