@@ -1,0 +1,55 @@
+query,output,timestamp
+create npc,"NPC Created:
+Name: Azaavara Minstrel
+Class: Bard
+Race: tiefling
+Level: 18
+Abilities: Darkvision, Healing Hands, Radiant Soul
+Languages: Common, Celestial
+Spells: Message, Light, Dominate Monster, Crown of Madness
+Special Abilities: Fame and Glamour: Renowned performer with incredible charm., Radiant Soul: Gain radiant wings for a short duration.",2024-12-03 17:19:10.651198
+create npc,"NPC Created:
+Name: Azaavara Minstrel
+Class: Bard
+Race: tiefling
+Level: 18
+Abilities: Darkvision, Healing Hands, Radiant Soul
+Languages: Common, Celestial
+Spells: Message, Light, Dominate Monster, Crown of Madness
+Special Abilities: Fame and Glamour: Renowned performer with incredible charm., Radiant Soul: Gain radiant wings for a short duration.",2024-12-03 17:19:16.778580
+create npc,"NPC Created:
+Name: Azaavara Minstrel
+Class: Druid
+Race: elf
+Level: 1
+Abilities: Darkvision, Healing Hands, Radiant Soul
+Languages: Common, Celestial
+Spells: Message, Light, Dominate Monster, Crown of Madness
+Special Abilities: Fame and Glamour: Renowned performer with incredible charm., Radiant Soul: Gain radiant wings for a short duration.",2024-12-03 17:19:23.315273
+create npc,"NPC Created:
+Name: Azaavara Minstrel
+Class: Sorcerer
+Race: dragonborn
+Level: 5
+Abilities: Darkvision, Healing Hands, Radiant Soul
+Languages: Common, Celestial
+Spells: Message, Light, Dominate Monster, Crown of Madness
+Special Abilities: Fame and Glamour: Renowned performer with incredible charm., Radiant Soul: Gain radiant wings for a short duration.",2024-12-03 18:15:59.350770
+create npc,"NPC Created:
+Name: Azaavara Minstrel
+Class: Sorcerer
+Race: dragonborn
+Level: 5
+Abilities: Darkvision, Healing Hands, Radiant Soul
+Languages: Common, Celestial
+Spells: Message, Light, Dominate Monster, Crown of Madness
+Special Abilities: Fame and Glamour: Renowned performer with incredible charm., Radiant Soul: Gain radiant wings for a short duration.",2024-12-03 18:16:48.610436
+create npc,"NPC Created:
+Name: Azaavara Minstrel
+Class: Artificer
+Race: human
+Level: 15
+Abilities: Darkvision, Healing Hands, Radiant Soul
+Languages: Common, Celestial
+Spells: Message, Light, Dominate Monster, Crown of Madness
+Special Abilities: Fame and Glamour: Renowned performer with incredible charm., Radiant Soul: Gain radiant wings for a short duration.",2024-12-03 19:45:21.446743

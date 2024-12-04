@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Azaavara Minstrel",
+        "race": "human",
+        "class": "Artificer",
+        "level": 15,
+        "stats": {
+            "STR": 13,
+            "DEX": 16,
+            "CON": 11,
+            "INT": 18,
+            "WIS": 18,
+            "CHA": 10
+        },
+        "abilities": [
+            "Darkvision",
+            "Healing Hands",
+            "Radiant Soul"
+        ],
+        "languages": [
+            "Common",
+            "Celestial"
+        ],
+        "spells": [
+            "Message",
+            "Light",
+            "Dominate Monster",
+            "Crown of Madness"
+        ],
+        "special_abilities": [
+            "Fame and Glamour: Renowned performer with incredible charm.",
+            "Radiant Soul: Gain radiant wings for a short duration."
+        ]
+    }
+]

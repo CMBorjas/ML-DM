@@ -9,6 +9,41 @@
 <body>
     <h1>Dungeon Master Map</h1>
     <hr>
+    
+    <!-- NPC List Section -->
+    <h2>NPCs</h2>
+    <ul id="npc-list">
+        {% for npc in npcs %}
+            <li>
+                <strong>{{ npc['name'] }}</strong> ({{ npc['class'] }} - {{ npc['race'] }})
+                <button onclick="talkToNpc('{{ npc['name']}}')">Talk</button>
+                <button onclick="deleteNpc('{{ npc['name']}}')">Delete</button>
+            </li>
+        {% endfor %}
+    </ul>
+    
+
+    <script>
+        function talkToNpc(name) {
+            // Redirect the user to the Gradio chat interface for the selected NPC
+            const sanitizedName = encodeURIComponent(name);  // Encode the name to handle spaces
+            window.location.href = `/talk_to_npc_gradio/${sanitizedName}`;
+        }
+        // Function to delete an NPC
+        function deleteNpc(name) {
+            fetch(`/delete_npc/${name}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('NPC deleted!');
+                        window.location.reload(); // Reload to update the NPC list
+                    } else {
+                        alert('Error deleting NPC!');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 
     <!-- Map and Token Upload Section -->
     <div id="upload-section">
